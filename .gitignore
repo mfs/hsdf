@@ -1,0 +1,6 @@
+*.swp
+*.o
+*.hi
+*.hse
+hsdf
+StatVFS.hs
