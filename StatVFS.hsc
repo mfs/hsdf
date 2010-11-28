@@ -31,22 +31,24 @@ import Foreign.C.String
 #include <sys/statvfs.h>
 
 data StatVFS = StatVFS {
-    bsize :: CULong,
-    frsize :: CULong,
-    blocks :: CULong,
-    bfree :: CULong
+    bsize :: Integer,
+    frsize :: Integer,
+    blocks :: Integer,
+    bfree :: Integer
 } deriving (Show)
 
 instance Storable StatVFS where
     sizeOf _ = (#size struct statvfs)
     alignment _ = alignment (undefined :: CInt)
     peek ptr = do
-        bsize' <- (#peek struct statvfs, f_bsize) ptr
-        frsize' <- (#peek struct statvfs, f_frsize) ptr
-        blocks' <- (#peek struct statvfs, f_blocks) ptr
-        bfree' <- (#peek struct statvfs, f_bfree) ptr
+        bsize' <- (#peek struct statvfs, f_bsize) ptr >>= return . fromCULong
+        frsize' <- (#peek struct statvfs, f_frsize) ptr >>= return . fromCULong
+        blocks' <- (#peek struct statvfs, f_blocks) ptr >>= return . fromCULong
+        bfree' <- (#peek struct statvfs, f_bfree) ptr >>= return . fromCULong
         return StatVFS { bsize=bsize', frsize=frsize',
                          blocks=blocks', bfree=bfree' }
+        where fromCULong :: CULong -> Integer
+              fromCULong = toInteger
     poke _ _ = do
         return ()
 

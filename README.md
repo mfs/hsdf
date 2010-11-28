@@ -9,11 +9,12 @@ moment hsdf is not configurable apart from making changes to Main.hs. Hsdf may
 fail to correctly display the bar graph if you are not using a 256 color
 terminal.
 
+StatVFS.hsc is based on [statvfs.hsc][3] by Vasyl Pasternak
+
 ## Building
 
 Building is currently make based. Running make should result in a `hsfb`
 executable:
-
 <code>
     $ make
     hsc2hs StatVFS.hsc
@@ -26,7 +27,7 @@ executable:
 
 ## Possible Improvements
 
-- Remove all references to Foreign.C.Types types from main.hs
+- <del>Remove all references to Foreign.C.Types types from main.hs</del>
 - Clean up color and printf output code. Escape sequences and printf format
   flags don't mix well.
 - Add a percentage column.
@@ -39,3 +40,4 @@ executable:
 
 [1]: http://www.haskell.org/
 [2]: http://en.wikibooks.org/wiki/Haskell/FFI
+[3]: http://web.archiveorange.com/archive/v/nDNOvdMEB2sZFcCHnltz#cSHZqAzErbQgA73

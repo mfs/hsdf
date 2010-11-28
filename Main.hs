@@ -22,7 +22,6 @@ along with hsdf.  If not, see <http://www.gnu.org/licenses/>.
 module Main
     where
 
-import Foreign.C.Types
 import Data.List
 import Text.Printf
 import StatVFS
@@ -54,7 +53,7 @@ printRow x = do
            (color (abrev avail) 0 32)
            (makeBar 40 (ratio used size))
 
-abrev :: CULong -> [Char]
+abrev :: Integer -> [Char]
 abrev x | a > 1024^3 = printf "%6.1fG" (a / 1024^3)
         | a > 1024^2 = printf "%6.1fM" (a / 1024^2)
         | a > 1024^1 = printf "%6.1fk" (a / 1024^1)
@@ -73,7 +72,7 @@ color str a b = printf "\ESC[%d;%dm%s\ESC[0m" a b str
 color256 :: [Char] -> Int -> Int -> [Char]
 color256 str a b = printf "\ESC[%d;5;%dm%s\ESC[0m" a b str
 
-ratio :: CULong -> CULong -> Double
+ratio :: Integer -> Integer -> Double
 ratio a b = (fromIntegral a) / (fromIntegral b)
 
 {- vim: set syntax=haskell foldmethod=marker: -}
