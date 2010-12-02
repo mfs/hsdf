@@ -13,7 +13,7 @@ StatVFS.hsc is based on [statvfs.hsc][3] by Vasyl Pasternak
 
 ## Building
 
-Building is currently make based. Running make should result in a `hsfb`
+Building is currently make based. Running make should result in a `hsdf`
 executable:
 <code>
     $ make
