@@ -57,6 +57,7 @@ abrev :: Integer -> [Char]
 abrev x | a > 1024^3 = printf "%6.1fG" (a / 1024^3)
         | a > 1024^2 = printf "%6.1fM" (a / 1024^2)
         | a > 1024^1 = printf "%6.1fk" (a / 1024^1)
+        | otherwise  = printf "%7d" x
         where a = fromIntegral x :: Double
 
 makeBar :: Int -> Double -> [Char]
